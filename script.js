@@ -65,9 +65,9 @@ function operateScreen(e) {
     }
     else {
         checkEquals(this.textContent);
-        
+        if (screenText.textContent !== "Not allowed :(") {
             operator = this.textContent;
-        
+        }
     }
 }
 
@@ -76,19 +76,40 @@ function checkEquals(operatorGiven) {
         if (num2 === '') {
             return;
         }
-        screenText.textContent = operate(operator, num1, num2);
-        num1 = screenText.textContent;
-        num2 = '';
-        operator = '';
-        wipe = 0;
-        answer = 1;
+        else if (operator !== '/' || num2 !== '0') {
+            screenText.textContent = operate(operator, num1, num2);
+            num1 = screenText.textContent;
+            num2 = '';
+            operator = '';
+            wipe = 0;
+            answer = 1;
+        }
+        else {
+            screenText.textContent = "Not allowed :(";
+            num1 = '';
+            num2 = '';
+            wipe = 0;
+            operator = '';
+            answer = 1;
+        }
     }
     else if (num2 !== '') {
-        screenText.textContent = operate(operator, num1, num2);
-        num1 = screenText.textContent;
-        num2 = '';
-        wipe = 0;
-        operator = 0;
+        if (operator !== '/' || num2 !== '0') {
+            screenText.textContent = operate(operator, num1, num2);
+            num1 = screenText.textContent;
+            num2 = '';
+            operator = '';
+            wipe = 0;
+            answer = 1;
+        }
+        else {
+            screenText.textContent = "Not allowed :(";
+            num1 = '';
+            num2 = '';
+            wipe = 0;
+            operator = '';
+            answer = 1;
+        }
     }
 }
 
